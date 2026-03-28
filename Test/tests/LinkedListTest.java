@@ -19,7 +19,7 @@ class LinkedListTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		// Create your concrete linked list class and assign to to linkedList.
-		//this.linkedList = new SLL();
+		this.linkedList = new SLL();
 	}
 
 	/**
@@ -244,5 +244,53 @@ class LinkedListTest {
 		
 		String value = (String) this.linkedList.retrieve(1);
 		assertEquals("b", value);
+	}
+	
+	
+	//* additional tests
+	
+	
+	
+	/* 
+	 * Tests deleting an element at an invalid (negative) index throws an exception.  
+	 */
+	@Test
+	void testDeleteOutOfBounds() {
+		this.linkedList.append("a");
+		
+		assertThrows(IndexOutOfBoundsException.class, () -> {
+			this.linkedList.delete(-1);
+		});
+	}
+	
+	/*
+	 * Tests finding the index of an item that does not exist in list
+	 */
+	
+	@Test
+	void testRetrieveOutOfBounds() {
+		this.linkedList.append("a");
+		this.linkedList.append("b");
+		this.linkedList.append("c");
+		
+		assertThrows(IndexOutOfBoundsException.class, () -> {
+			this.linkedList.retrieve(5);
+		});
+	}
+	
+	/*
+	 * Tests clearing the linked list
+	 */
+	
+	@Test
+	void testClearList() {
+		this.linkedList.append("a");
+		this.linkedList.append("b");
+		this.linkedList.append("c");
+		
+		this.linkedList.clear();
+		
+		assertTrue(this.linkedList.isEmpty());
+		assertEquals(0, this.linkedList.size());
 	}
 }
