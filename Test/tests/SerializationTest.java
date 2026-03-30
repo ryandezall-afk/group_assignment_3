@@ -52,6 +52,46 @@ class SerializationTest {
 		assertTrue(this.baos.size() > 0);
 	}
 
+	
+	@Test
+	void testDeserialize1() throws IOException, ClassNotFoundException {
+	    // Serialize the linked list
+	    this.oos.writeObject(this.users);
+	    this.oos.flush();
+
+	    // Convert byte array back into input stream
+	    ByteArrayInputStream bais = new ByteArrayInputStream(this.baos.toByteArray());
+	    ObjectInputStream ois = new ObjectInputStream(bais);
+
+	    // Deserialize into object
+	    LinkedListADT deserialized = (LinkedListADT) ois.readObject();
+
+	    // Verify object exists
+	    assertNotNull(deserialized);
+	}
+
+@Test
+void testDeserializedContent() throws IOException, ClassNotFoundException {
+// Serialize the linked list//
+this.oos.writeObject(this.users);
+this.oos.flush();
+
+// Convert byte array//
+ByteArrayInputStream bais = new ByteArrayInputStream(this.baos.toByteArray());
+ObjectInputStream ois = new ObjectInputStream(bais);
+
+//Deserialize into object//
+LinkedListADT deserialized = (LinkedListADT) ois.readObject();
+
+//Verify size is same//
+assertEquals(this.users.size(), deserialized.size());
+
+//Verify element matches//
+for (int i = 0; i < this.users.size(); i++) {
+assertEquals(this.users.retrieve(i), deserialized.retrieve(i)); }
+}
+
+	
 	/**
 	 * Tests the object was deserialized.
 	 * @throws ClassNotFoundException
