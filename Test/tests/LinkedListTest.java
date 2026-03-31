@@ -294,30 +294,30 @@ class LinkedListTest {
 		assertEquals(0, this.linkedList.size());
 	}
 	
-@Test
-void testInsertAtBeginning() {
-this.linkedList.append("b");
-this.linkedList.append("c");
-		
-this.linkedList.insert("a", 0);
-		
-/** * Expected: * a -> b -> c */
-		
-assertEquals(3, this.linkedList.size());
-assertEquals("a", this.linkedList.retrieve(0));
-assertEquals("b", this.linkedList.retrieve(1));
-assertEquals("c", this.linkedList.retrieve(2));}
+	@Test
+	void testInsertAtBeginning() {
+	this.linkedList.append("b");
+	this.linkedList.append("c");
+			
+	this.linkedList.insert("a", 0);
+			
+	/** * Expected: * a -> b -> c */
+			
+	assertEquals(3, this.linkedList.size());
+	assertEquals("a", this.linkedList.retrieve(0));
+	assertEquals("b", this.linkedList.retrieve(1));
+	assertEquals("c", this.linkedList.retrieve(2));}
 	
-@Test
-void testFindNonExistentItem() {
-this.linkedList.append("a");
-this.linkedList.append("b");
-this.linkedList.append("c");
+	@Test
+	void testFindNonExistentItem() {
+	this.linkedList.append("a");
+	this.linkedList.append("b");
+	this.linkedList.append("c");
+		
+	boolean contains = this.linkedList.contains("z");
+	assertFalse(contains);
+		
+	int index = this.linkedList.indexOf("z");
+	assertEquals(-1, index);}
 	
-boolean contains = this.linkedList.contains("z");
-assertFalse(contains);
-	
-int index = this.linkedList.indexOf("z");
-assertEquals(-1, index);}
-
-}
+	}
